@@ -6,7 +6,7 @@ Add the [Cesium][1] WebGL Virtual Globe and Map Engine to your [Vaadin 7][2] App
 Download
 --------
 
-Download the latest JAR or grab via Maven:
+Download the latest JAR or grab via Maven (Coming Soon!):
 ```xml
 <dependency>
   <groupId>com.immersion</groupId>
