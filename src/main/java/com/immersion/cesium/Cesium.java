@@ -20,7 +20,6 @@ import java.util.UUID;
  */
 @JavaScript({"http://cesiumjs.org/Cesium/Build/Cesium/Cesium.js", "cesium_connector.js"})
 @StyleSheet({"http://cesiumjs.org/Cesium/Build/Cesium/Widgets/CesiumWidget/CesiumWidget.css", "vaadin://addons/cesium/styles.css"})
-@StyleSheet({"http://cesiumjs.org/Cesium/Build/Cesium/Widgets/CesiumWidget/CesiumWidget.css", "vaadin://addons/Cesium/styles.css"})
 public class Cesium extends AbstractJavaScriptComponent {
 
     private static final long serialVersionUID = 1L;
