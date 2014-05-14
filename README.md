@@ -8,7 +8,7 @@ Add the [Cesium][1] WebGL Virtual Globe and Map Engine to your [Vaadin 7][2] App
 Download
 --------
 
-Download the latest JAR or grab via the Sonatype Maven Repository:~~
+Download the latest JAR or grab via the Sonatype Maven Repository:
 ```xml
 <repositories>
     <repository>
@@ -60,6 +60,13 @@ BillboardClickListener listener = new BillboardClickListener() {
 };
 
 cesium.addBillboard(-75.0, 40.0, "banana.jpg", listener);
+```
+
+Possible other examples include:
+```java
+cesium.addLabel("Perth", -31.9522, 115.8589);
+cesium.flyToMyLocation();
+cesium.flyToPosition(-31.9522, 115.8589);
 ```
 
 Developed By
