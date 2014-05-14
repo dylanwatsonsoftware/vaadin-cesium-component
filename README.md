@@ -5,17 +5,30 @@ Add the [Cesium][1] WebGL Virtual Globe and Map Engine to your [Vaadin 7][2] App
 
 [![Build Status](https://travis-ci.org/lotsabackscatter/vaadin-cesium-component.svg?branch=master)](https://travis-ci.org/lotsabackscatter/vaadin-cesium-component)
 
-<!-- Download
+Download
 --------
 
-Download the latest JAR or grab via Maven (Coming Soon!):~~
+Download the latest JAR or grab via the Sonatype Maven Repository:~~
 ```xml
-<dependency>~~
+<repositories>
+    <repository>
+        <id>oss-sonatype</id>
+        <name>oss-sonatype</name>
+        <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        <snapshots>
+            <enabled>true</enabled>
+        </snapshots>
+    </repository>
+</repositories>
+
+...
+
+<dependency>
   <groupId>com.immersion</groupId>
   <artifactId>vaadin-cesium-component</artifactId>
-  <version>1.0</version>
+  <version>1.0-SNAPSHOT</version>
 </dependency>
-``` -->
+```
 
 Usage
 --------
