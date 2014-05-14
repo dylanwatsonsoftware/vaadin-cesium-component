@@ -11,33 +11,33 @@
              var image = new Image();
              image.onload = function () {
                  var billboards = new Cesium.BillboardCollection();
-                 var labels = new Cesium.LabelCollection();
                  var textureAtlas = scene.createTextureAtlas({
                      image: image
                  });
                  billboards.textureAtlas = textureAtlas;
 
                  var b = billboards.add({
-                     position: ellipsoid.cartographicToCartesian(Cesium.Cartographic.fromDegrees(lon, lon, height)),
+                     position: ellipsoid.cartographicToCartesian(Cesium.Cartographic.fromDegrees(lon, lat, height)),
                      imageIndex: 0,
                      pixelOffsetScaleByDistance : new Cesium.NearFarScalar(1.5e2, 0.5, 1.5e8, 0.0)
                  });
 
                  if(name) {
+                     var labels = new Cesium.LabelCollection();
                      labels.add({
                          position : ellipsoid.cartographicToCartesian(Cesium.Cartographic.fromDegrees(lon, lat)),
                          text     : name,
-                         font : '20px sans-serif',
+                         font : '14px sans-serif',
                          horizontalOrigin : Cesium.HorizontalOrigin.CENTER,
                          pixelOffset : new Cesium.Cartesian2(0.0, image.height),
                          pixelOffsetScaleByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e8, 0.0)
                      });
+                     scene.primitives.add(labels);
                  }
 
                  b.id = id;
                  b.name = name;
                  b.imageSrc = imageSrc;
-                 //b.scale = SCALE;
 
                  scene.primitives.add(billboards);
              };
