@@ -1,51 +1,98 @@
  window.com_immersion_cesium_Cesium = function() {
+     var SCALE = 0.05;
      var widget = new Cesium.CesiumWidget(this.getElement());
      var scene = widget.scene;
+     var ellipsoid = scene.globe.ellipsoid;
      var self = this;
 
      this.getElement().setAttribute("class", "fullSize");
 
-     this.addBillboard = function(id, lat, lon, imageSrc) {
-         var ellipsoid = scene.globe.ellipsoid;
-         var image = new Image();
-         image.onload = function () {
-             var billboards = new Cesium.BillboardCollection();
-             var textureAtlas = scene.createTextureAtlas({
-                 image: image
-             });
-             billboards.textureAtlas = textureAtlas;
+     this.addBillboard = function(id, name, lat, lon, height, imageSrc) {
+             var image = new Image();
+             image.onload = function () {
+                 var billboards = new Cesium.BillboardCollection();
+                 var textureAtlas = scene.createTextureAtlas({
+                     image: image
+                 });
+                 billboards.textureAtlas = textureAtlas;
 
-             var b = billboards.add({
-                 position: ellipsoid.cartographicToCartesian(Cesium.Cartographic.fromDegrees(lat, lon)),
-                 imageIndex: 0,
-                 //scaleByDistance: new Cesium.NearFarScalar(1.5e2, 2.0, 1.5e7, 0.5)
-             });
+                 var b = billboards.add({
+                     position: ellipsoid.cartographicToCartesian(Cesium.Cartographic.fromDegrees(lon, lon, height)),
+                     imageIndex: 0,
+                     pixelOffsetScaleByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e8, 0.0)
+                 });
 
-             b.imageSrc = imageSrc;
-             //b.position = ellipsoid.cartographicToCartesian(Cesium.Cartographic.fromDegrees(-75.59777, 40.03883, 30.0));
-             b.scale = 0.05;
-             b.id = id;
-             //b.color = new Cesium.Color(1.0, 1.0, 1.0, 0.25);
+                 if(name) {
+                     labels.add({
+                         position : ellipsoid.cartographicToCartesian(Cesium.Cartographic.fromDegrees(lon, lat)),
+                         text     : name,
+                         font : '20px sans-serif',
+                         horizontalOrigin : Cesium.HorizontalOrigin.CENTER,
+                         pixelOffset : new Cesium.Cartesian2(0.0, image.height),
+                         pixelOffsetScaleByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e8, 0.0)
+                     });
+                 }
 
-             scene.primitives.add(billboards);
+                 b.id = id;
+                 b.name = name;
+                 b.imageSrc = imageSrc;
+                 //b.scale = SCALE;
+
+                 scene.primitives.add(billboards);
+             };
+             image.crossOrigin = '';
+             image.src = imageSrc;
          };
-         image.crossOrigin = '';
-         image.src = imageSrc;
-     };
 
+     this.flyToPosition = function(lat, lon) {
+             var destination = Cesium.Cartographic.fromDegrees(lon, lat, 15000.0);
+
+             var flight = Cesium.CameraFlightPath.createAnimationCartographic(scene, {
+                 destination : destination
+             });
+             scene.animations.add(flight);
+         };
+
+     this.flyToMyLocation = function() {
+             function fly(position) {
+                 var destination = Cesium.Cartographic.fromDegrees(position.coords.longitude, position.coords.latitude, 1000.0);
+                 destination = ellipsoid.cartographicToCartesian(destination);
+
+                 var flight = Cesium.CameraFlightPath.createAnimation(scene, {
+                     destination : destination
+                 });
+                 scene.animations.add(flight);
+             }
+
+             navigator.geolocation.getCurrentPosition(fly);
+         };
+
+     this.addLabel = function (id, name, lat, lon) {
+                  var labels = new Cesium.LabelCollection();
+                  var label = labels.add({
+                      position : ellipsoid.cartographicToCartesian(Cesium.Cartographic.fromDegrees(lon, lat)),
+                      text     : name,
+                      translucencyByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e8, 0.0)
+                  });
+
+                  label.id = id;
+
+                  scene.primitives.add(labels);
+              };
+
+    /* Add mouse handlers */
      var lastPickedBoard = null;
-
      handler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
      handler.setInputAction( function (movement) {
          var pickedObject = scene.pick(movement.endPosition);
 
          if (lastPickedBoard && (!pickedObject || pickedObject.primitive != lastPickedBoard)) {
-             lastPickedBoard.scale = 0.05;
+             lastPickedBoard.scale = SCALE;
          }
 
          if (pickedObject && Cesium.defined(pickedObject) && (pickedObject.primitive instanceof Cesium.Billboard)) {
              lastPickedBoard = pickedObject.primitive;
-             lastPickedBoard.scale = 0.07;
+             lastPickedBoard.scale = SCALE * 1.4;
          }
      }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
 

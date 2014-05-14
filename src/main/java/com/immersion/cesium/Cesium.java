@@ -7,6 +7,8 @@ import com.vaadin.ui.JavaScriptFunction;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import javax.annotation.CheckForNull;
+import javax.annotation.Nonnull;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -47,21 +49,78 @@ public class Cesium extends AbstractJavaScriptComponent {
     }
 
     /**
+     * Adds a billboard to the globe.
+     *
+     * @param name          the name of the billboard
      * @param latitude      the latitude of the billboard
      * @param longitude     the longitude of the billboard
      * @param image         the url of the image representing the billboard
-     * @param clickListener listener that is fired when the billboard is clicked.
+     * @param clickListener the listener that is fired when the billboard is clicked. It may be null.
+     * @return the UUID of the added billboard
      */
-    public void addBillboard(double latitude, double longitude, String image,
-                             BillboardClickListener clickListener) {
-        UUID id = UUID.randomUUID();
+    public UUID addBillboard(@CheckForNull String name, double latitude, double longitude, @Nonnull String image,
+                             @CheckForNull BillboardClickListener clickListener) {
+        Billboard billboard = new Billboard(name, latitude, longitude, image);
+        return addBillboard(billboard, clickListener);
+    }
+
+    /**
+     * Adds the billboard to the globe.
+     *
+     * @param billboard     the billboard
+     * @param clickListener the listener that is fired when the billboard is clicked. It may be null.
+     * @return the UUID of the added billboard
+     */
+    public UUID addBillboard(@Nonnull Billboard billboard, @Nonnull BillboardClickListener clickListener) {
+        UUID id = billboard.getId();
+
         if (clickListener != null) {
             listeners.put(id, clickListener);
         }
 
-        callFunction("addBillboard", id.toString(), latitude, longitude, image);
+        callFunction("addBillboard", id.toString(), billboard.getName(), billboard.getLatitude(), billboard.getLongitude(), billboard.getImageUrl());
+
+        getState().billboards.put(id.toString(), billboard);
+
+        return id;
     }
 
+    /**
+     * Adds a label to the globe.
+     *
+     * @param name      the name of the billboard
+     * @param latitude  the latitude of the billboard
+     * @param longitude the longitude of the billboard
+     * @return the UUID of the added label
+     */
+    public UUID addLabel(@CheckForNull String name, double latitude, double longitude) {
+        UUID id = UUID.randomUUID();
+
+        callFunction("addLabel", id.toString(), name, latitude, longitude);
+
+        return id;
+    }
+
+    /**
+     * Fly to the current location of the user.
+     */
+    public void flyToMyLocation() {
+        callFunction("flyToMyLocation");
+    }
+
+    /**
+     * Fly to the given location.
+     *
+     * @param latitude
+     * @param longitude
+     */
+    public void flyToPosition(double latitude, double longitude) {
+        callFunction("flyToPosition", latitude, longitude);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected CesiumState getState() {
         return (CesiumState) super.getState();
