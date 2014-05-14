@@ -3,7 +3,7 @@
      var widget = new Cesium.CesiumWidget(this.getElement());
      var scene = widget.scene;
      var ellipsoid = scene.globe.ellipsoid;
-     var self = this;
+     var that = this;
 
      this.getElement().setAttribute("class", "fullSize");
 
@@ -11,6 +11,7 @@
              var image = new Image();
              image.onload = function () {
                  var billboards = new Cesium.BillboardCollection();
+                 var labels = new Cesium.LabelCollection();
                  var textureAtlas = scene.createTextureAtlas({
                      image: image
                  });
@@ -19,7 +20,7 @@
                  var b = billboards.add({
                      position: ellipsoid.cartographicToCartesian(Cesium.Cartographic.fromDegrees(lon, lon, height)),
                      imageIndex: 0,
-                     pixelOffsetScaleByDistance : new Cesium.NearFarScalar(1.5e2, 1.0, 1.5e8, 0.0)
+                     pixelOffsetScaleByDistance : new Cesium.NearFarScalar(1.5e2, 0.5, 1.5e8, 0.0)
                  });
 
                  if(name) {
@@ -82,6 +83,7 @@
 
     /* Add mouse handlers */
      var lastPickedBoard = null;
+
      handler = new Cesium.ScreenSpaceEventHandler(scene.canvas);
      handler.setInputAction( function (movement) {
          var pickedObject = scene.pick(movement.endPosition);
@@ -100,7 +102,7 @@
          var pickedObject = scene.pick(movement.position);
 
          if (pickedObject && Cesium.defined(pickedObject) && (pickedObject.primitive instanceof Cesium.Billboard)) {
-         	self.onClick(pickedObject.primitive.id);
+         	that.onClick(pickedObject.primitive.id);
          }
      }, Cesium.ScreenSpaceEventType.LEFT_CLICK);
  };

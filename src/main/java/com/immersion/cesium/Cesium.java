@@ -78,7 +78,7 @@ public class Cesium extends AbstractJavaScriptComponent {
             listeners.put(id, clickListener);
         }
 
-        callFunction("addBillboard", id.toString(), billboard.getName(), billboard.getLatitude(), billboard.getLongitude(), billboard.getImageUrl());
+        callFunction("addBillboard", id.toString(), billboard.getName(), billboard.getLatitude(), billboard.getLongitude(), billboard.getHeight(), billboard.getImageUrl());
 
         getState().billboards.put(id.toString(), billboard);
 

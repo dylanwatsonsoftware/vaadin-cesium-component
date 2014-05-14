@@ -15,16 +15,22 @@ public class Billboard {
     private final UUID id = UUID.randomUUID();
     private double latitude;
     private double longitude;
+    private double height;
     @CheckForNull
     private String name;
     @Nonnull
     private String imageUrl;
 
-    public Billboard(@CheckForNull String name, double latitude, double longitude, @Nonnull String imageUrl) {
+    public Billboard(@CheckForNull String name, double latitude, double longitude, double height, @Nonnull String imageUrl) {
         this.latitude = latitude;
         this.longitude = longitude;
+        this.height = height;
         this.name = name;
         this.imageUrl = imageUrl;
+    }
+
+    public Billboard(@CheckForNull String name, double latitude, double longitude, @Nonnull String imageUrl) {
+        this(name, latitude, longitude, 0, imageUrl);
     }
 
     public double getLatitude() {
@@ -59,6 +65,14 @@ public class Billboard {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public double getHeight() {
+        return height;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
     }
 
     @Nonnull
