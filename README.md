@@ -3,6 +3,8 @@ Vaadin Cesium Component
 
 Add the [Cesium][1] WebGL Virtual Globe and Map Engine to your [Vaadin 7][2] Application.
 
+[![Build Status](https://travis-ci.org/lotsabackscatter/vaadin-cesium-component.svg?branch=master)](https://travis-ci.org/lotsabackscatter/vaadin-cesium-component)
+
 Download
 --------
 
