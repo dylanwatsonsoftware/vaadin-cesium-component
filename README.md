@@ -5,16 +5,48 @@ Add the [Cesium][1] WebGL Virtual Globe and Map Engine to your [Vaadin 7][2] App
 
 [![Build Status](https://travis-ci.org/lotsabackscatter/vaadin-cesium-component.svg?branch=master)](https://travis-ci.org/lotsabackscatter/vaadin-cesium-component)
 
-Download
+<!-- Download
 --------
 
-Download the latest JAR or grab via Maven (Coming Soon!):
+Download the latest JAR or grab via Maven (Coming Soon!):~~
 ```xml
-<dependency>
+<dependency>~~
   <groupId>com.immersion</groupId>
   <artifactId>vaadin-cesium-component</artifactId>
   <version>1.0</version>
 </dependency>
+``` -->
+
+Usage
+--------
+
+Simply create a layout and add the Cesium component to it!
+```java
+VerticalLayout layout = new VerticalLayout();
+
+Cesium cesium = new Cesium();
+layout.addComponent(cesium);
+```
+
+You can even add billboards to the globe:
+```java
+Cesium cesium = new Cesium();
+cesium.addBillboard(-75.0, 40.0, "banana.jpg");
+```
+
+And respond to click events, on the billboards:
+```java
+Cesium cesium = new Cesium();
+
+BillboardClickListener listener = new BillboardClickListener() {
+
+    @Override
+    public void onClick() {
+        Notification.show("Bananas", Notification.Type.TRAY_NOTIFICATION);
+    }
+};
+
+cesium.addBillboard(-75.0, 40.0, "banana.jpg", listener);
 ```
 
 Developed By
