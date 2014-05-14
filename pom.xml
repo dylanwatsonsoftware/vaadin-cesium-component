@@ -3,10 +3,22 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.immersion</groupId>
-    <artifactId>vaadin-cesium-connector</artifactId>
-    <packaging>jar</packaging>
+    <artifactId>vaadin-cesium-component</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>Vaadin-Cesium Connector</name>
+    <packaging>jar</packaging>
+
+
+    <name>Vaadin-Cesium Component</name>
+    <description>A Vaadin 7 component that creates a Cesium WebGL Globe</description>
+    <url>https://github.com/lotsabackscatter/vaadin-cesium-connector</url>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

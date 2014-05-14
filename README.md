@@ -1,4 +1,4 @@
-Vaadin Cesium Connector
+Vaadin Cesium Component
 =======================
 
 Add the [Cesium][1] WebGL Virtual Globe and Map Engine to your [Vaadin 7][2] Application.
@@ -10,13 +10,18 @@ Download the latest JAR or grab via Maven (Coming Soon!):
 ```xml
 <dependency>
   <groupId>com.immersion</groupId>
-  <artifactId>vaadin-cesium-connector</artifactId>
+  <artifactId>vaadin-cesium-component</artifactId>
   <version>1.0</version>
 </dependency>
 ```
+
+Developed By
+--------
+
+* Dylan Watson - <lotsabackscatter@gmail.com>
    
 License
-=======
+--------
 
     Copyright 2014 Dylan Watson.
 
