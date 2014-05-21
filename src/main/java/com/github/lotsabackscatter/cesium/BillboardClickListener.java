@@ -1,4 +1,4 @@
-package com.immersion.cesium;
+package com.github.lotsabackscatter.cesium;
 
 /**
  * Listener for Cesium Billboard click events.

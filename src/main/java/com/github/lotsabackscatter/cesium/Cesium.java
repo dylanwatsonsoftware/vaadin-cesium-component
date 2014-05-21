@@ -1,4 +1,4 @@
-package com.immersion.cesium;
+package com.github.lotsabackscatter.cesium;
 
 import com.vaadin.annotations.JavaScript;
 import com.vaadin.annotations.StyleSheet;

@@ -1,4 +1,4 @@
- window.com_immersion_cesium_Cesium = function() {
+ window.com_github_lotsabackscatter_cesium_Cesium = function() {
      var SCALE = 0.05;
      var widget = new Cesium.CesiumWidget(this.getElement());
      var scene = widget.scene;

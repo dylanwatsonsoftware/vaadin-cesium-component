@@ -1,4 +1,4 @@
-package com.immersion.cesium;
+package com.github.lotsabackscatter.cesium;
 
 import com.vaadin.shared.ui.JavaScriptComponentState;
 

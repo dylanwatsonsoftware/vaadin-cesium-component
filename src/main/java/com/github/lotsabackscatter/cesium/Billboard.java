@@ -1,4 +1,4 @@
-package com.immersion.cesium;
+package com.github.lotsabackscatter.cesium;
 
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
