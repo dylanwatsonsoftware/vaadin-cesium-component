@@ -9,7 +9,7 @@
         <version>7</version>
     </parent>
 
-    <groupId>com.immersion</groupId>
+    <groupId>com.github.lotsabackscatter</groupId>
     <artifactId>vaadin-cesium-component</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
