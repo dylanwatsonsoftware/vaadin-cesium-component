@@ -23,36 +23,6 @@ Download the latest JAR or grab via the Sonatype Maven Repository:
 
 ...
 
-<plugins>
-
-    ...
-    
-    <plugin>
-      <groupId>org.apache.maven.plugins</groupId>
-      <artifactId>maven-dependency-plugin</artifactId>
-      <version>2.1</version>
-      <executions>
-          <execution>
-              <id>unpack</id>
-              <phase>prepare-package</phase>
-              <goals>
-                  <goal>unpack</goal>
-              </goals>
-              <configuration>
-                  <artifactItems>
-                      <artifactItem>
-                          <groupId>com.immersion</groupId>
-                          <artifactId>vaadin-cesium-component</artifactId>
-                          <includes>VAADIN/addons/cesium/**/*.*</includes>
-                          <outputDirectory>${project.build.directory}/${project.artifactId}/</outputDirectory>
-                      </artifactItem>
-                  </artifactItems>
-              </configuration>
-          </execution>
-      </executions>
-    </plugin>      
-</plugins>
-
 <dependency>
   <groupId>com.immersion</groupId>
   <artifactId>vaadin-cesium-component</artifactId>
@@ -103,7 +73,7 @@ Developed By
 --------
 
 * Dylan Watson - <lotsabackscatter@gmail.com>
-   
+
 License
 --------
 
@@ -121,6 +91,6 @@ License
     See the License for the specific language governing permissions and
     limitations under the License.
 
-   
+
  [1]: http://cesiumjs.org/
- [2]: https://vaadin.com/home 
+ [2]: https://vaadin.com/home
