@@ -15,7 +15,7 @@
     <packaging>jar</packaging>
 
 
-    <name>Vaadin-Cesium Component</name>
+    <name>Vaadin Cesium Component</name>
     <description>A Vaadin 7 component that creates a Cesium WebGL Globe</description>
     <url>https://github.com/lotsabackscatter/vaadin-cesium-connector</url>
 
