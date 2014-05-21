@@ -5,6 +5,8 @@ Add the [Cesium][1] WebGL Virtual Globe and Map Engine to your [Vaadin 7][2] App
 
 [![Build Status](https://travis-ci.org/lotsabackscatter/vaadin-cesium-component.svg?branch=master)](https://travis-ci.org/lotsabackscatter/vaadin-cesium-component)
 
+![Vaadin Cesium Example Image][3]
+
 Download
 --------
 
@@ -94,3 +96,4 @@ License
 
  [1]: http://cesiumjs.org/
  [2]: https://vaadin.com/home
+ [3]: https://raw.githubusercontent.com/lotsabackscatter/vaadin-cesium-connector/master/etc/example.png "Vaadin Cesium Example"
