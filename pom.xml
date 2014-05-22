@@ -42,7 +42,7 @@
 
     <scm>
         <connection>scm:git:git://github.com/lotsabackscatter/vaadin-cesium-component.git</connection>
-        <developerConnection>scm:git:git@github.com:lotsabackscatter/vaadin-cesium-component.git</developerConnection>
+        <developerConnection>scm:git:git@github.com/lotsabackscatter/vaadin-cesium-component.git</developerConnection>
         <url>https://github.com/lotsabackscatter/vaadin-cesium-component</url>
     </scm>
 
