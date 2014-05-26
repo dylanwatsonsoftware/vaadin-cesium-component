@@ -10,7 +10,16 @@ Add the [Cesium][1] WebGL Virtual Globe and Map Engine to your [Vaadin 7][2] App
 Download
 --------
 
-Download the latest JAR or grab via the Sonatype Maven Repository:
+Download the latest release via Maven Central:
+```xml
+<dependency>
+    <groupId>com.github.lotsabackscatter</groupId>
+    <artifactId>vaadin-cesium-component</artifactId>
+    <version>1.3</version>
+</dependency>
+```
+
+Or Download the latest SNAPSHOT via the Sonatype Maven Repository:
 ```xml
 <repositories>
     <repository>
@@ -28,7 +37,7 @@ Download the latest JAR or grab via the Sonatype Maven Repository:
 <dependency>
   <groupId>com.github.lotsabackscatter</groupId>
   <artifactId>vaadin-cesium-component</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.4-SNAPSHOT</version>
 </dependency>
 ```
 
