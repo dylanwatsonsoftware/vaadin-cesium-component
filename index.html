@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Vaadin Cesium Component by lotsabackscatter</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Vaadin Cesium Component</h1>
+        <h2>Vaadin 7 WebGL Cesium Globe Component</h2>
+        <a href="https://github.com/lotsabackscatter/vaadin-cesium-component" class="button"><small>View project on</small>GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <p>Add the <a href="http://cesiumjs.org/">Cesium</a> WebGL Virtual Globe and Map Engine to your <a href="https://vaadin.com/home">Vaadin 7</a> Application.</p>
+
+<p><a href="https://travis-ci.org/lotsabackscatter/vaadin-cesium-component"><img src="https://travis-ci.org/lotsabackscatter/vaadin-cesium-component.svg?branch=master" alt="Build Status"></a></p>
+
+<p><img src="https://raw.githubusercontent.com/lotsabackscatter/vaadin-cesium-connector/master/etc/example.png" alt="Vaadin Cesium Example Image" title="Vaadin Cesium Example"></p>
+
+<h2>
+<a name="download" class="anchor" href="#download"><span class="octicon octicon-link"></span></a>Download</h2>
+
+<p>Download the latest release via Maven Central:</p>
+
+<div class="highlight highlight-xml"><pre><span class="nt">&lt;dependency&gt;</span>
+    <span class="nt">&lt;groupId&gt;</span>com.github.lotsabackscatter<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId&gt;</span>vaadin-cesium-component<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version&gt;</span>1.3<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+
+<p>Or Download the latest SNAPSHOT via the Sonatype Maven Repository:</p>
+
+<div class="highlight highlight-xml"><pre><span class="nt">&lt;repositories&gt;</span>
+    <span class="nt">&lt;repository&gt;</span>
+        <span class="nt">&lt;id&gt;</span>oss-sonatype<span class="nt">&lt;/id&gt;</span>
+        <span class="nt">&lt;name&gt;</span>oss-sonatype<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;url&gt;</span>https://oss.sonatype.org/content/repositories/snapshots/<span class="nt">&lt;/url&gt;</span>
+        <span class="nt">&lt;snapshots&gt;</span>
+            <span class="nt">&lt;enabled&gt;</span>true<span class="nt">&lt;/enabled&gt;</span>
+        <span class="nt">&lt;/snapshots&gt;</span>
+    <span class="nt">&lt;/repository&gt;</span>
+<span class="nt">&lt;/repositories&gt;</span>
+
+...
+
+<span class="nt">&lt;dependency&gt;</span>
+  <span class="nt">&lt;groupId&gt;</span>com.github.lotsabackscatter<span class="nt">&lt;/groupId&gt;</span>
+  <span class="nt">&lt;artifactId&gt;</span>vaadin-cesium-component<span class="nt">&lt;/artifactId&gt;</span>
+  <span class="nt">&lt;version&gt;</span>1.4-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</pre></div>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>Simply create a layout and add the Cesium component to it!</p>
+
+<div class="highlight highlight-java"><pre><span class="n">VerticalLayout</span> <span class="n">layout</span> <span class="o">=</span> <span class="k">new</span> <span class="n">VerticalLayout</span><span class="o">();</span>
+
+<span class="n">Cesium</span> <span class="n">cesium</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Cesium</span><span class="o">();</span>
+<span class="n">layout</span><span class="o">.</span><span class="na">addComponent</span><span class="o">(</span><span class="n">cesium</span><span class="o">);</span>
+</pre></div>
+
+<p>You can even add billboards to the globe:</p>
+
+<div class="highlight highlight-java"><pre><span class="n">Cesium</span> <span class="n">cesium</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Cesium</span><span class="o">();</span>
+<span class="n">cesium</span><span class="o">.</span><span class="na">addBillboard</span><span class="o">(-</span><span class="mf">75.0</span><span class="o">,</span> <span class="mf">40.0</span><span class="o">,</span> <span class="s">"banana.jpg"</span><span class="o">);</span>
+</pre></div>
+
+<p>And respond to click events, on the billboards:</p>
+
+<div class="highlight highlight-java"><pre><span class="n">Cesium</span> <span class="n">cesium</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Cesium</span><span class="o">();</span>
+
+<span class="n">BillboardClickListener</span> <span class="n">listener</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BillboardClickListener</span><span class="o">()</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">onClick</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">Notification</span><span class="o">.</span><span class="na">show</span><span class="o">(</span><span class="s">"Bananas"</span><span class="o">,</span> <span class="n">Notification</span><span class="o">.</span><span class="na">Type</span><span class="o">.</span><span class="na">TRAY_NOTIFICATION</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">};</span>
+
+<span class="n">cesium</span><span class="o">.</span><span class="na">addBillboard</span><span class="o">(-</span><span class="mf">75.0</span><span class="o">,</span> <span class="mf">40.0</span><span class="o">,</span> <span class="s">"banana.jpg"</span><span class="o">,</span> <span class="n">listener</span><span class="o">);</span>
+</pre></div>
+
+<p>Possible other examples include:</p>
+
+<div class="highlight highlight-java"><pre><span class="n">cesium</span><span class="o">.</span><span class="na">addLabel</span><span class="o">(</span><span class="s">"Perth"</span><span class="o">,</span> <span class="o">-</span><span class="mf">31.9522</span><span class="o">,</span> <span class="mf">115.8589</span><span class="o">);</span>
+<span class="n">cesium</span><span class="o">.</span><span class="na">flyToMyLocation</span><span class="o">();</span>
+<span class="n">cesium</span><span class="o">.</span><span class="na">flyToPosition</span><span class="o">(-</span><span class="mf">31.9522</span><span class="o">,</span> <span class="mf">115.8589</span><span class="o">);</span>
+</pre></div>
+
+<h2>
+<a name="developed-by" class="anchor" href="#developed-by"><span class="octicon octicon-link"></span></a>Developed By</h2>
+
+<ul>
+<li>Dylan Watson - <a href="mailto:lotsabackscatter@gmail.com">lotsabackscatter@gmail.com</a>
+</li>
+</ul><h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<pre><code>Copyright 2014 Dylan Watson.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+</code></pre>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/lotsabackscatter/vaadin-cesium-component/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/lotsabackscatter/vaadin-cesium-component/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/lotsabackscatter/vaadin-cesium-component"></a> is maintained by <a href="https://github.com/lotsabackscatter">lotsabackscatter</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
